@@ -1,0 +1,79 @@
+-- This file has been generated from package.yaml by hpack version 0.28.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 17cd81fad78dd5ddfebd5bd024cba66eb1740c6a3d1fb59a28195d94f4e1861c
+
+name:           lambda-calculus
+version:        0.1.0.0
+synopsis:       Short description of your package
+description:    Please see the README on Github at <https://github.com/hnefatl/lambda-calculus#readme>
+homepage:       https://github.com/hnefatl/lambda-calculus#readme
+bug-reports:    https://github.com/hnefatl/lambda-calculus/issues
+author:         Keith Collister
+maintainer:     collisterkeith@gmail.com
+copyright:      2018 Keith Collister
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+cabal-version:  >= 1.10
+extra-source-files:
+    app/Lexer.x
+    app/Parser.y
+    README.md
+
+source-repository head
+  type: git
+  location: https://github.com/hnefatl/lambda-calculus
+
+library
+  hs-source-dirs:
+      src
+  ghc-options: -Wall
+  build-depends:
+      base >=4.7 && <5
+  build-tools:
+      alex
+    , happy
+  exposed-modules:
+      Evaluator
+      Lambda
+  other-modules:
+      Paths_lambda_calculus
+  default-language: Haskell2010
+
+executable lambda-calculus-exe
+  main-is: Main.hs
+  hs-source-dirs:
+      app
+  ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N -Wall
+  build-depends:
+      base >=4.7 && <5
+    , lambda-calculus
+  build-tools:
+      alex
+    , happy
+  other-modules:
+      Lexer
+      Parser
+      Paths_lambda_calculus
+  default-language: Haskell2010
+
+test-suite lambda-calculus-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  hs-source-dirs:
+      test
+  ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N -Wall
+  build-depends:
+      base >=4.7 && <5
+    , lambda-calculus
+    , tasty
+    , tasty-hunit
+    , tasty-quickcheck
+  build-tools:
+      alex
+    , happy
+  other-modules:
+      Paths_lambda_calculus
+  default-language: Haskell2010
